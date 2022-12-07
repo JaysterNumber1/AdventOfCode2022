@@ -5,7 +5,7 @@ public class asdf {
     }
 
     public static void main(String[] args) {
-
+        new Day1()
     }
 
 }
