@@ -6,6 +6,24 @@ import java.util.ArrayList;
 
 public class Advent {
 
+    private void Template(){
+        try {
+            File file = new File("Day1.txt");
+            Scanner reader = new Scanner(file);
+
+            while(reader.hasNextLine()) {
+            }
+            reader.close();
+            }
+        catch (FileNotFoundException e ){
+                System.out.println("Error Occured");
+                e.printStackTrace();
+            }
+        }
+
+
+
+
     //Day1 Variables
     int testElf;
     int elf1;
@@ -287,12 +305,52 @@ public class Advent {
         }
     }
 
+    //Day4 Vars
+    int[] r1;
+    int[] r2;
+    int count;
+
+    private void Day4(){
+        try {
+            File file = new File("Day4.txt");
+            Scanner reader = new Scanner(file);
+
+            while(reader.hasNextLine()) {
+                data = reader.nextLine();
+                String charCheck = data;
+
+                while (charCheck.charAt(count)!=','){
+                    //add up to the split
+
+                    r1[count] = Integer.parseInt(data);
+
+                    System.out.println(r1);
+                    count++;
+                }
+
+                count =0;
+                while(count!=data.length()){
+                    //Finish the String
+
+
+                    count++;
+                }
+
+                count = 0;
+            }
+            reader.close();
+        }
+        catch (FileNotFoundException e ){
+            System.out.println("Error Occured");
+            e.printStackTrace();
+        }
+    }
 
 
 
     public static void main(String[] args) {
 
-        new Advent().Day3();
+        new Advent().Day4();
     }
 
 }
