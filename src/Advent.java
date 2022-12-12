@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.File;
@@ -30,9 +31,14 @@ public class Advent {
     int elf2;
     int elf3;
     String data;
+=======
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+>>>>>>> Stashed changes
 
-    private void Day1(){
 
+<<<<<<< Updated upstream
         try{
         File file = new File("Day1.txt");
         Scanner reader = new Scanner(file);
@@ -303,6 +309,22 @@ public class Advent {
             System.out.println("Error Occured");
             e.printStackTrace();
         }
+=======
+public class Advent {
+
+    private void Day1(){
+        File puzzle = new File("AdventOfCode2022/Day1.txt");
+        Scanner reader = null;
+        try {
+            reader = new Scanner(puzzle);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while(reader.hasNextLine()){
+            String data = reader.nextLine();
+            System.out.println(data);
+        }
+>>>>>>> Stashed changes
     }
 
     //Day4 Vars
@@ -349,8 +371,12 @@ public class Advent {
 
 
     public static void main(String[] args) {
+<<<<<<< Updated upstream
 
         new Advent().Day4();
+=======
+        new Advent().Day1();
+>>>>>>> Stashed changes
     }
 
 }
