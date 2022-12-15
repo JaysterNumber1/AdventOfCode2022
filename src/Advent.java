@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.File;
@@ -31,14 +30,10 @@ public class Advent {
     int elf2;
     int elf3;
     String data;
-=======
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
->>>>>>> Stashed changes
+
+    private void Day1(){
 
 
-<<<<<<< Updated upstream
         try{
         File file = new File("Day1.txt");
         Scanner reader = new Scanner(file);
@@ -222,7 +217,7 @@ import java.util.Scanner;
     int l3;
     int stringCount;
     int add;
-    private void Day3(){
+    private void Day3() {
         try {
 
             File file = new File("Day3.txt");
@@ -231,20 +226,20 @@ import java.util.Scanner;
 
             int count = 0;
 
-            while(read.hasNextLine()){
+            while (read.hasNextLine()) {
                 for (int i = 0; i < 3; i++) {
 
                     data = read.nextLine();
-                    if(i ==0){
+                    if (i == 0) {
                         l1 = data.length();
 
                     }
-                    if(i ==1){
-                        l2 = data.length()+l1;
+                    if (i == 1) {
+                        l2 = data.length() + l1;
 
                     }
-                    if(i ==2){
-                        l3 = data.length()+l2;
+                    if (i == 2) {
+                        l3 = data.length() + l2;
 
                     }
                     stringCount++;
@@ -259,105 +254,120 @@ import java.util.Scanner;
                         for (int k = l2; k < l3; k++) {
 
 
-                        if(badge.charAt(i) == badge.charAt(j) && badge.charAt(j)== badge.charAt(k)) {
-                            //MATCH!
+                            if (badge.charAt(i) == badge.charAt(j) && badge.charAt(j) == badge.charAt(k)) {
+                                //MATCH!
 
-                            while (alphabet[count] != badge.charAt(k)) {
+                                while (alphabet[count] != badge.charAt(k)) {
 
-                                count++;
+                                    count++;
+                                }
+
+                                if (add == 0) {
+                                    sum += count;
+                                    add++;
+                                    System.out.println(sum + " " + count);
+                                    System.out.println(stringCount);
+                                    break;
+                                }
+
+
                             }
-
-                            if(add ==0) {
-                                sum += count;
-                                add++;
-                                System.out.println(sum+" "+count);
-                                System.out.println(stringCount);
-                                break;
-                            }
-
-
-
-
-                        }
-                            if(add!=0){
+                            if (add != 0) {
                                 break;
                             }
                         }
-                        if(add!=0){
+                        if (add != 0) {
                             break;
                         }
                     }
 
-                    if(add!=0){
+                    if (add != 0) {
                         break;
                     }
                 }
-                add=0;
+                add = 0;
                 count = 0;
-                l1= 0;
-                l2 =0;
-                l3=0;
+                l1 = 0;
+                l2 = 0;
+                l3 = 0;
                 badge = "";
-
 
 
             }
 
             read.close();
-        }
-        catch (FileNotFoundException e ){
+        } catch (FileNotFoundException e) {
             System.out.println("Error Occured");
             e.printStackTrace();
         }
-=======
-public class Advent {
-
-    private void Day1(){
-        File puzzle = new File("AdventOfCode2022/Day1.txt");
-        Scanner reader = null;
-        try {
-            reader = new Scanner(puzzle);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        while(reader.hasNextLine()){
-            String data = reader.nextLine();
-            System.out.println(data);
-        }
->>>>>>> Stashed changes
     }
 
     //Day4 Vars
-    int[] r1;
-    int[] r2;
+    ArrayList<Integer> r1 = new ArrayList<Integer>();
+    ArrayList<Integer> r2 = new ArrayList<Integer>();
     int count;
+    int contained;
 
     private void Day4(){
         try {
-            File file = new File("Day4.txt");
+            File file = new File("AdventOfCode2022/Day4.txt");
             Scanner reader = new Scanner(file);
 
             while(reader.hasNextLine()) {
                 data = reader.nextLine();
-                String charCheck = data;
 
-                while (charCheck.charAt(count)!=','){
+
+
+                while (data.charAt(count)!=','){
                     //add up to the split
+                    if (data.charAt(count+1) !='-'&&data.charAt(count) !='-'&&data.charAt(count+1)!=','){
+                        r1.add(Integer.valueOf(data.charAt(count)+""+data.charAt(count+1)));
+                        count++;
+                    }
+                    else if(data.charAt(count) !='-'){
+                        r1.add(Integer.valueOf(data.charAt(count)+""));
+                    }
 
-                    r1[count] = Integer.parseInt(data);
 
-                    System.out.println(r1);
                     count++;
                 }
 
-                count =0;
+
                 while(count!=data.length()){
+                   if(data.charAt(count)==','){
+                       count++;
+                   }
                     //Finish the String
+                    if (data.length()!=count+1&&data.charAt(count+1) !='-'&&data.charAt(count) !='-'&&data.charAt(count+1)!=','){
+                        r2.add(Integer.valueOf(data.charAt(count)+""+data.charAt(count+1)));
+                        count++;
+                    }
+                    else if(data.charAt(count) !='-'){
+                        r2.add(Integer.valueOf(data.charAt(count)+""));
+                    }
+
 
 
                     count++;
                 }
 
+                /*
+                Part 1
+                if(r1.get(0)>=r2.get(0)&&r1.get(1)<=r2.get(1)||r1.get(0)<=r2.get(0)&&r1.get(1)>=r2.get(1)){
+                    contained++;
+                }
+
+                 */
+                //Part 2
+                if(r1.get(0)>=r2.get(0)&&r1.get(0)<=r2.get(1)||r1.get(1)<=r2.get(1)&&r1.get(1)>=r2.get(0)||r1.get(0)<=r2.get(0)&&r1.get(1)>=r2.get(1)||r2.get(0)<=r1.get(0)&&r2.get(1)>=r1.get(1)){
+                    contained++;
+                }
+
+
+                r1.clear();
+                r2.clear();
+
+                System.out.println(contained);
                 count = 0;
             }
             reader.close();
@@ -371,12 +381,12 @@ public class Advent {
 
 
     public static void main(String[] args) {
-<<<<<<< Updated upstream
+
 
         new Advent().Day4();
-=======
-        new Advent().Day1();
->>>>>>> Stashed changes
+
+
+
     }
 
 }
