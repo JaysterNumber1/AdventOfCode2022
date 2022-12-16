@@ -3,27 +3,25 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.lang.reflect.Array;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Advent {
 
-    private void Template(){
+    private void Template() {
         try {
             File file = new File("Day1.txt");
             Scanner reader = new Scanner(file);
 
-            while(reader.hasNextLine()) {
+            while (reader.hasNextLine()) {
             }
             reader.close();
-            }
-        catch (FileNotFoundException e ){
-                System.out.println("Error Occured");
-                e.printStackTrace();
-            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Error Occured");
+            e.printStackTrace();
         }
-
-
+    }
 
 
     //Day1 Variables
@@ -33,58 +31,56 @@ public class Advent {
     int elf3;
     String data;
 
-    private void Day1(){
+    private void Day1() {
 
 
-        try{
-        File file = new File("Day1.txt");
-        Scanner reader = new Scanner(file);
+        try {
+            File file = new File("Day1.txt");
+            Scanner reader = new Scanner(file);
 
-        while(reader.hasNextLine()) {
-             data = reader.nextLine();
-            if(data.isEmpty()){
-                if(testElf > elf1) {
-                    elf3 = elf2;
-                    elf2 = elf1;
-                    elf1 = testElf;
+            while (reader.hasNextLine()) {
+                data = reader.nextLine();
+                if (data.isEmpty()) {
+                    if (testElf > elf1) {
+                        elf3 = elf2;
+                        elf2 = elf1;
+                        elf1 = testElf;
 
-                } else  if(testElf>elf2){
-                    elf3=elf2;
-                    elf2 = testElf;
+                    } else if (testElf > elf2) {
+                        elf3 = elf2;
+                        elf2 = testElf;
 
 
-                } else if(testElf>elf3){
-                    elf3=testElf;
+                    } else if (testElf > elf3) {
+                        elf3 = testElf;
 
+
+                    }
+
+
+                    testElf = 0;
 
                 }
-
-
-
-                testElf = 0;
+                if (!data.isEmpty()) {
+                    testElf += Integer.valueOf(data);
+                }
 
             }
-            if(!data.isEmpty()){
-                testElf +=Integer.valueOf(data);
-            }
-
-        }
 
             System.out.println(elf3);
             System.out.println(elf2);
             System.out.println(elf1);
-            testElf=elf1+elf2+elf3;
+            testElf = elf1 + elf2 + elf3;
             System.out.println(testElf);
 
             reader.close();
-        }
-        catch (FileNotFoundException e ){
+        } catch (FileNotFoundException e) {
             System.out.println("Error Occured");
             e.printStackTrace();
-            }
         }
+    }
 
-        //DAY 2 VARS
+    //DAY 2 VARS
 
     char oRock = 'A';
     char oPaper = 'B';
@@ -113,30 +109,28 @@ public class Advent {
 
     int playerScore;
 
-    private void Day2(){
-            //Day2 Variables
+    private void Day2() {
+        //Day2 Variables
 
 
-            try{
-                File file = new File("Day2.txt");
-                Scanner reader = new Scanner(file);
-                String data;
-                while (reader.hasNextLine()){
-                    data = reader.nextLine();
+        try {
+            File file = new File("Day2.txt");
+            Scanner reader = new Scanner(file);
+            String data;
+            while (reader.hasNextLine()) {
+                data = reader.nextLine();
 
-                    //Opponent Played:
-                    if(data.charAt(0) == oRock){
-                        opponentChoice = rock;
+                //Opponent Played:
+                if (data.charAt(0) == oRock) {
+                    opponentChoice = rock;
 
-                    }
-                    else if(data.charAt(0) == oPaper){
-                        opponentChoice = paper;
+                } else if (data.charAt(0) == oPaper) {
+                    opponentChoice = paper;
 
-                    }
-                    else if(data.charAt(0) == oScissors){
-                        opponentChoice = scissors;
+                } else if (data.charAt(0) == oScissors) {
+                    opponentChoice = scissors;
 
-                    }
+                }
                 /* PART 1
                     if(data.charAt(2)==pRock){
                         playerChoice = rock;
@@ -163,55 +157,51 @@ public class Advent {
 
 
                  */
-                    if(data.charAt(2) == l){
-                        if(opponentChoice == rock){
-                            playerChoice = scissors;
-                        }
-                        if(opponentChoice == paper){
-                            playerChoice = rock;
-                        }
-                        if(opponentChoice == scissors){
-                            playerChoice = paper;
-                        }
-
-                        System.out.println("LOSE ");
-                        playerScore+=lose+playerChoice;
+                if (data.charAt(2) == l) {
+                    if (opponentChoice == rock) {
+                        playerChoice = scissors;
                     }
-                    else if(data.charAt(2) == d){
-                        System.out.println("DRAW ");
-
-                        playerScore += opponentChoice+draw;
+                    if (opponentChoice == paper) {
+                        playerChoice = rock;
                     }
-                    else if(data.charAt(2) == w){
-                        if(opponentChoice == rock){
-                            playerChoice = paper;
-                        }
-                        if(opponentChoice == paper){
-                            playerChoice = scissors;
-                        }
-                        if(opponentChoice == scissors){
-                            playerChoice = rock;
-                        }
-                        System.out.println("WIN ");
-
-                        playerScore += win+playerChoice;
+                    if (opponentChoice == scissors) {
+                        playerChoice = paper;
                     }
-                    System.out.println(playerScore);
+
+                    System.out.println("LOSE ");
+                    playerScore += lose + playerChoice;
+                } else if (data.charAt(2) == d) {
+                    System.out.println("DRAW ");
+
+                    playerScore += opponentChoice + draw;
+                } else if (data.charAt(2) == w) {
+                    if (opponentChoice == rock) {
+                        playerChoice = paper;
+                    }
+                    if (opponentChoice == paper) {
+                        playerChoice = scissors;
+                    }
+                    if (opponentChoice == scissors) {
+                        playerChoice = rock;
+                    }
+                    System.out.println("WIN ");
+
+                    playerScore += win + playerChoice;
                 }
-
-
-
-                reader.close();
+                System.out.println(playerScore);
             }
-            catch (FileNotFoundException e ){
-                System.out.println("Error Occured");
-                e.printStackTrace();
-            }
+
+
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Error Occured");
+            e.printStackTrace();
         }
+    }
 
 
     //Day3 Vars
-    char[] alphabet = {'0','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+    char[] alphabet = {'0', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     int sum;
     String badge = "";
     int l1;
@@ -219,6 +209,7 @@ public class Advent {
     int l3;
     int stringCount;
     int add;
+
     private void Day3() {
         try {
 
@@ -310,24 +301,22 @@ public class Advent {
     int count;
     int contained;
 
-    private void Day4(){
+    private void Day4() {
         try {
             File file = new File("AdventOfCode2022/Day4.txt");
             Scanner reader = new Scanner(file);
 
-            while(reader.hasNextLine()) {
+            while (reader.hasNextLine()) {
                 data = reader.nextLine();
 
 
-
-                while (data.charAt(count)!=','){
+                while (data.charAt(count) != ',') {
                     //add up to the split
-                    if (data.charAt(count+1) !='-'&&data.charAt(count) !='-'&&data.charAt(count+1)!=','){
-                        r1.add(Integer.valueOf(data.charAt(count)+""+data.charAt(count+1)));
+                    if (data.charAt(count + 1) != '-' && data.charAt(count) != '-' && data.charAt(count + 1) != ',') {
+                        r1.add(Integer.valueOf(data.charAt(count) + "" + data.charAt(count + 1)));
                         count++;
-                    }
-                    else if(data.charAt(count) !='-'){
-                        r1.add(Integer.valueOf(data.charAt(count)+""));
+                    } else if (data.charAt(count) != '-') {
+                        r1.add(Integer.valueOf(data.charAt(count) + ""));
                     }
 
 
@@ -335,19 +324,17 @@ public class Advent {
                 }
 
 
-                while(count!=data.length()){
-                   if(data.charAt(count)==','){
-                       count++;
-                   }
-                    //Finish the String
-                    if (data.length()!=count+1&&data.charAt(count+1) !='-'&&data.charAt(count) !='-'&&data.charAt(count+1)!=','){
-                        r2.add(Integer.valueOf(data.charAt(count)+""+data.charAt(count+1)));
+                while (count != data.length()) {
+                    if (data.charAt(count) == ',') {
                         count++;
                     }
-                    else if(data.charAt(count) !='-'){
-                        r2.add(Integer.valueOf(data.charAt(count)+""));
+                    //Finish the String
+                    if (data.length() != count + 1 && data.charAt(count + 1) != '-' && data.charAt(count) != '-' && data.charAt(count + 1) != ',') {
+                        r2.add(Integer.valueOf(data.charAt(count) + "" + data.charAt(count + 1)));
+                        count++;
+                    } else if (data.charAt(count) != '-') {
+                        r2.add(Integer.valueOf(data.charAt(count) + ""));
                     }
-
 
 
                     count++;
@@ -361,7 +348,7 @@ public class Advent {
 
                  */
                 //Part 2
-                if(r1.get(0)>=r2.get(0)&&r1.get(0)<=r2.get(1)||r1.get(1)<=r2.get(1)&&r1.get(1)>=r2.get(0)||r1.get(0)<=r2.get(0)&&r1.get(1)>=r2.get(1)||r2.get(0)<=r1.get(0)&&r2.get(1)>=r1.get(1)){
+                if (r1.get(0) >= r2.get(0) && r1.get(0) <= r2.get(1) || r1.get(1) <= r2.get(1) && r1.get(1) >= r2.get(0) || r1.get(0) <= r2.get(0) && r1.get(1) >= r2.get(1) || r2.get(0) <= r1.get(0) && r2.get(1) >= r1.get(1)) {
                     contained++;
                 }
 
@@ -373,8 +360,7 @@ public class Advent {
                 count = 0;
             }
             reader.close();
-        }
-        catch (FileNotFoundException e ){
+        } catch (FileNotFoundException e) {
             System.out.println("Error Occured");
             e.printStackTrace();
         }
@@ -389,99 +375,173 @@ public class Advent {
     ArrayList<Character> stack7 = new ArrayList<Character>();
     ArrayList<Character> stack8 = new ArrayList<Character>();
     ArrayList<Character> stack9 = new ArrayList<Character>();
+    ArrayList<Integer> move = new ArrayList<Integer>();
+    ArrayList<Integer> from = new ArrayList<Integer>();
+    ArrayList<Integer> to = new ArrayList<Integer>();
+    ArrayList[] stack = {stack1, stack2, stack3, stack4, stack5, stack6, stack7, stack8, stack9};
+    ArrayList[] moves = {move, from, to}
 
     int whitespace;
 
-    private void Day5(){
+
+    int temp;
+
+    private void Day5() {
         try {
-            File file = new File("Day5.txt");
+            File file = new File("AdventOfCode2022/Day5.txt");
             Scanner reader = new Scanner(file);
+            count = 0;
 
-            while(reader.hasNextLine()) {
-            data = reader.nextLine();
-            while(count < data.length()){
+            while (reader.hasNextLine()) {
+                data = reader.nextLine();
 
-
-                if(data.charAt(count)==' '){
-                    whitespace++;
-
-                }
+                while (count < data.length()) {
 
 
+                    if (data.charAt(count) == ' ') {
+                        whitespace++;
 
-                if(data.charAt(count)=='['){
-                    //Add next char to correct stack
-                    if(whitespace+1== 1){
-                        stack1.add(data.charAt(count+1));
-                    } else if(whitespace+1== 5){
-                        stack2.add(data.charAt(count+1));
-                    } else if(whitespace+1== 9){
-                        stack3.add(data.charAt(count+1));
-                    } else if(whitespace+1== 12){
-                        stack4.add(data.charAt(count+1));
-                    } else if(whitespace+1== 15){
-                        stack5.add(data.charAt(count+1));
-                    } else  if(whitespace+1== 18){
-                        stack6.add(data.charAt(count+1));
-                    } else if(whitespace+1== 21){
-                        stack7.add(data.charAt(count+1));
-                    } else if(whitespace+1== 24){
-                        stack8.add(data.charAt(count+1));
-                    }else if(whitespace+1== 27){
-                        stack9.add(data.charAt(count+1));
                     }
-                        //System.out.println(data.charAt(count+1));
 
-                    whitespace+=3;
+//Add next char to correct stack
+                    if (data.charAt(count) == '[') {
+
+                        if (whitespace + 1 == 1) {
+                            stack[0].add(data.charAt(count + 1));
+                        } else if (whitespace + 1 == 5) {
+                            stack[1].add(data.charAt(count + 1));
+                        } else if (whitespace + 1 == 9) {
+                            stack[2].add(data.charAt(count + 1));
+                        } else if (whitespace + 1 == 12) {
+                            stack[3].add(data.charAt(count + 1));
+                        } else if (whitespace + 1 == 15) {
+                            stack[4].add(data.charAt(count + 1));
+                        } else if (whitespace + 1 == 18) {
+                            stack[5].add(data.charAt(count + 1));
+                        } else if (whitespace + 1 == 21) {
+                            stack[6].add(data.charAt(count + 1));
+                        } else if (whitespace + 1 == 24) {
+                            stack[7].add(data.charAt(count + 1));
+                        } else if (whitespace + 1 == 27) {
+                            stack[8].add(data.charAt(count + 1));
+                        }
+
+
+                        whitespace += 3;
+                    }
+
+
+                    if (data.charAt(0) == 'm') {
+
+                        for (int i = 0; i < 2; i++) {
+
+
+                            if (temp < data.length()) {
+                                if (data.charAt(temp) == ' ' || data.charAt(temp) == 'm' || data.charAt(temp) == 'o' || data.charAt(temp) == 'v' || data.charAt(temp) == 'e' || data.charAt(temp) == 'f' || data.charAt(temp) == 'r' || data.charAt(temp) == 't') {
+                                    //Not Int
+                                    break;
+                                } else {
+                                    //Is Int
+
+
+                                    if (move.indexOf(i)==) {
+                                        if (data.charAt(temp + 1) != ' ') {
+                                            move = Integer.valueOf(data.charAt(temp) + data.charAt(temp + 1) + "");
+                                        } else {
+                                            move = Integer.valueOf(data.charAt(temp) + "");
+                                        }
+                                    } else if (from == 0) {
+                                        if (data.charAt(temp + 1) != ' ') {
+                                            from = Integer.valueOf(data.charAt(temp) + data.charAt(temp + 1) + "");
+                                        } else {
+                                            from = Integer.valueOf(data.charAt(temp) + "");
+                                        }
+                                    } else {
+
+
+                                        if (to == 0) {
+                                            to = Integer.valueOf(data.charAt(temp) + "");
+
+                                        } else {
+
+                                            to = Integer.valueOf(data.charAt(temp) + data.charAt(temp + 1) + "");
+                                        }
+                                    }
+
+                                }
+                            }
+
+                            temp++;
+
+
+                        }
+
+                    }
+
+
+                    count++;
+
                 }
-                //System.out.println(count+" "+data.charAt(count));
-                count++;
 
-            }
 
                 whitespace = 0;
-                count =0;
+                count = 0;
             }
 //Flip List
-            Collections.reverse(stack1);
-            Collections.reverse(stack2);
-            Collections.reverse(stack3);
-            Collections.reverse(stack4);
-            Collections.reverse(stack5);
-            Collections.reverse(stack6);
-            Collections.reverse(stack7);
-            Collections.reverse(stack8);
-            Collections.reverse(stack9);
+            System.out.println(move);
+            System.out.println(from);
+            System.out.println(to);
+
+
+            for (int i = 0; i < 8; i++) {
+                Collections.reverse(stack[i]);
+            }
 //Print List To Check
-            System.out.println(stack1);
-            System.out.println(stack2);
-            System.out.println(stack3);
-            System.out.println(stack4);
-            System.out.println(stack5);
-            System.out.println(stack6);
-            System.out.println(stack7);
-            System.out.println(stack8);
-            System.out.println(stack9);
-
-
-
+            // System.out.println(stack1);
+            // System.out.println(stack2);
+            // System.out.println(stack3);
+            // System.out.println(stack4);
+            // System.out.println(stack5);
+            // System.out.println(stack6);
+            // System.out.println(stack7);
+            // System.out.println(stack8);
+            // System.out.println(stack9);
 
 
             reader.close();
-        }
-        catch (FileNotFoundException e ){
+
+        } catch (FileNotFoundException e) {
             System.out.println("Error Occured");
             e.printStackTrace();
         }
+
+
     }
 
+    private char pop(List<Character> stack) {
+        if (stack.isEmpty()) {
+            System.out.println("EMPTY");
+            return ' ';
+        }
+        char pop = stack.get(stack.size() - 1);
+        stack.remove(stack.size() - 1);
+        return pop;
+    }
+
+    private void push(List<Character> stack, char input) {
+        if (stack.isEmpty()) {
+            System.out.println("EMPTY");
+
+        } else {
+            stack.add(input);
+        }
+    }
 
 
     public static void main(String[] args) {
 
 
         new Advent().Day5();
-
 
 
     }
