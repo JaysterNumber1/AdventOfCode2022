@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.File;
+import java.lang.reflect.Array;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -378,11 +380,17 @@ public class Advent {
         }
     }
 
-    int[] stack1;
-    int[] stack2;
-    int[] stack3;
-    float check;
-    String stack = "stack";
+    ArrayList<Character> stack1 = new ArrayList<Character>();
+    ArrayList<Character> stack2 = new ArrayList<Character>();
+    ArrayList<Character> stack3 = new ArrayList<Character>();
+    ArrayList<Character> stack4 = new ArrayList<Character>();
+    ArrayList<Character> stack5 = new ArrayList<Character>();
+    ArrayList<Character> stack6 = new ArrayList<Character>();
+    ArrayList<Character> stack7 = new ArrayList<Character>();
+    ArrayList<Character> stack8 = new ArrayList<Character>();
+    ArrayList<Character> stack9 = new ArrayList<Character>();
+
+    int whitespace;
 
     private void Day5(){
         try {
@@ -390,21 +398,75 @@ public class Advent {
             Scanner reader = new Scanner(file);
 
             while(reader.hasNextLine()) {
-            data = reader.next();
+            data = reader.nextLine();
             while(count < data.length()){
-                if(data.charAt(count)=='['){
-                    //Add next char to correct stack
-                    check = count/4;
-                    //System.out.println(data.charAt(count+1));
-                    System.out.println(check);
+
+
+                if(data.charAt(count)==' '){
+                    whitespace++;
 
                 }
 
+
+
+                if(data.charAt(count)=='['){
+                    //Add next char to correct stack
+                    if(whitespace+1== 1){
+                        stack1.add(data.charAt(count+1));
+                    } else if(whitespace+1== 5){
+                        stack2.add(data.charAt(count+1));
+                    } else if(whitespace+1== 9){
+                        stack3.add(data.charAt(count+1));
+                    } else if(whitespace+1== 12){
+                        stack4.add(data.charAt(count+1));
+                    } else if(whitespace+1== 15){
+                        stack5.add(data.charAt(count+1));
+                    } else  if(whitespace+1== 18){
+                        stack6.add(data.charAt(count+1));
+                    } else if(whitespace+1== 21){
+                        stack7.add(data.charAt(count+1));
+                    } else if(whitespace+1== 24){
+                        stack8.add(data.charAt(count+1));
+                    }else if(whitespace+1== 27){
+                        stack9.add(data.charAt(count+1));
+                    }
+                        //System.out.println(data.charAt(count+1));
+
+                    whitespace+=3;
+                }
+                //System.out.println(count+" "+data.charAt(count));
                 count++;
+
             }
 
+                whitespace = 0;
                 count =0;
             }
+//Flip List
+            Collections.reverse(stack1);
+            Collections.reverse(stack2);
+            Collections.reverse(stack3);
+            Collections.reverse(stack4);
+            Collections.reverse(stack5);
+            Collections.reverse(stack6);
+            Collections.reverse(stack7);
+            Collections.reverse(stack8);
+            Collections.reverse(stack9);
+//Print List To Check
+            System.out.println(stack1);
+            System.out.println(stack2);
+            System.out.println(stack3);
+            System.out.println(stack4);
+            System.out.println(stack5);
+            System.out.println(stack6);
+            System.out.println(stack7);
+            System.out.println(stack8);
+            System.out.println(stack9);
+
+
+
+
+
             reader.close();
         }
         catch (FileNotFoundException e ){
