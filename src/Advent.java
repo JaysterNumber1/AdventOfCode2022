@@ -378,12 +378,47 @@ public class Advent {
         }
     }
 
+    int[] stack1;
+    int[] stack2;
+    int[] stack3;
+    float check;
+    String stack = "stack";
+
+    private void Day5(){
+        try {
+            File file = new File("Day5.txt");
+            Scanner reader = new Scanner(file);
+
+            while(reader.hasNextLine()) {
+            data = reader.next();
+            while(count < data.length()){
+                if(data.charAt(count)=='['){
+                    //Add next char to correct stack
+                    check = count/4;
+                    //System.out.println(data.charAt(count+1));
+                    System.out.println(check);
+
+                }
+
+                count++;
+            }
+
+                count =0;
+            }
+            reader.close();
+        }
+        catch (FileNotFoundException e ){
+            System.out.println("Error Occured");
+            e.printStackTrace();
+        }
+    }
+
 
 
     public static void main(String[] args) {
 
 
-        new Advent().Day4();
+        new Advent().Day5();
 
 
 
